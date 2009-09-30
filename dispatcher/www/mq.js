@@ -9,6 +9,8 @@ var mq = (function() {
 					type: "GET",
 					url: "/comet/client/" + uid,
 					dataType: "json",
+					async: true,
+					cache: false,
 					success: function(data) {
 						$.each(data, function(i, d) {
 							var fn = subscriptions[d.type]
@@ -20,7 +22,7 @@ var mq = (function() {
 						setTimeout(_poll, 0)	
 					},
 					error: function(XMLHttpRequest, status, error) {
-						setTimeout(_poll, 0)	
+						setTimeout(_poll, 1000)	
 					}})
 			}
 			_poll()
